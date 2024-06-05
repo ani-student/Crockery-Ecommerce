@@ -1,8 +1,9 @@
 
 import './r-collection.css'
 
-
 function Rcollection(props) {
+
+
 
     return (
 

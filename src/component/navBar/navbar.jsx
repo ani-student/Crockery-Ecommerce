@@ -1,31 +1,51 @@
-import React, { useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../navBar/navbar.css'
+
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SearchIcon from '@mui/icons-material/Search';
+import Profile_user from "../../assets/image/Profile_user.png";
+import UseAuth from "../../custom-hooks/Authuse"
+import { signOut } from "firebase/auth"
+import { auth } from '../../pages/firebase';
+import { toast } from 'react-toastify';
 
 
 function navbar() {
     const [active, setActive] = useState('Home');
 
+
     // searching feature   ============
-    const Navigate = useNavigate()
+    const navigate = useNavigate()
     const [SearchItem, setSearchItem] = useState("")
 
     const searchingHendling = (e) => {
         e.preventDefault()
-        Navigate(`/search/${SearchItem}`)
+        navigate(`/search/${SearchItem}`)
         setSearchItem("")
     }
 
+    const { currentUser } = UseAuth()
+    const profileActionRef = useRef(null)
+    const toggleProfileAction = () => profileActionRef.current.classList.toggle("show_profileAction");
+
+    const logOut = () => {
+
+        signOut(auth).then(() => {
+            toast.success('Logged Out')
+        }).catch(err => {
+            toast.error(err.message)
+        })
+    }
+
+
+
     //  Cart feature ==========
-    // const [count, setCount] = useState(0)
 
 
     return (
         <header className="navbar" >
             <Link to='/' style={{ "textDecoration": "none" }}><img src="https://www.zarla.com/images/zarla-crockery-craze-1x1-2400x2400-20230110-qkk8pj9bj44kkpdjr7b8.png?crop=1:1,smart&width=250&dpr=2" alt="" width={80} /></Link>
-
 
             {/*==== menu ======= */}
 
@@ -50,12 +70,33 @@ function navbar() {
 
             {/* ------- cart & login  ------- */}
 
-            <div className="login">
-                <Link to='/LoginCart'><button className='button'>Login</button></Link>
-
+            <div className="cart">
                 <Link to='/cart'><ShoppingCartOutlinedIcon /></Link>
-                <div className="cart-logo">0</div>
+                <span className="cart-logo">0</span>
             </div>
+
+
+            {/* Profile ============ */}
+
+            <div className='profile'>
+
+                <img src={currentUser ? currentUser.photoURL : Profile_user} className='profile-img' alt="" onClick={toggleProfileAction} />
+                <p className='profile-name' >{currentUser ? currentUser.displayName : ""}</p>
+
+                <div className="profile_actions" ref={profileActionRef} onClick={toggleProfileAction}>
+                    {
+                        currentUser ? (<span onClick={logOut}>Logout</span>)
+                            :
+                            <div>
+                                <Link to='/register'>SignUp </Link>
+                                <br />
+                                <Link to='/Login'>Login </Link>
+                            </div>
+
+                    }
+                </div>
+            </div>
+
         </header>
     )
 }

@@ -32,9 +32,6 @@ function SearchItem() {
 
     }, [term])
 
-    // toggle ======
-
-    console.log(filterData.length);
 
     return (
         <div>

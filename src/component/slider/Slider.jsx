@@ -24,7 +24,7 @@ function Slider() {
         <div className="h-section1 paddings">
 
             <div className="b-section">
-                <h1 className='primaryText'>Dining</h1>
+                <h1 className='primaryText'>Crockery Set</h1>
                 <p className='secondaryText'>Make way for a delightful dining experience with our premium and modern dinnerware, tableware and crockery sets.</p>
             </div>
 

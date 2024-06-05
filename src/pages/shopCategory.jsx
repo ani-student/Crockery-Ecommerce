@@ -3,7 +3,9 @@ import './css/shopCategory.css'
 import Rcollection from '../component/Hero-right-collection/r-collection'
 import values from '../util/All_product';
 
+
 function shopCategory(props) {
+
 
   return (
     <div className='shop-category'>
@@ -15,10 +17,10 @@ function shopCategory(props) {
         {
           values.map((data, i) => {
             if (props.Category === data.Category) {
-                return <Rcollection key={i} name={data.name} image={data.image} sales_price={data.sales_price} old_price={data.old_price} />
-              }
-              else null;
-            })
+              return <Rcollection key={i} name={data.name} image={data.image} sales_price={data.sales_price} old_price={data.old_price} />
+            }
+            else null;
+          })
         }
       </div>
 

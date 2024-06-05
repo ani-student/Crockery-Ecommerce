@@ -1,23 +1,25 @@
 import './collection.css'
 import RCollection from '../Hero-right-collection/r-collection'
 import DataCollection from '../../util/collection'
-import LeftCollection from '../Hero-left-collection/Left-collection'
+import { colors } from '@mui/material'
+// import LeftCollection from '../Hero-left-collection/Left-collection'
 
 function collection() {
   return (
     <section className='container collection'>
 
       {/* left side ===========  */}
-
+      {/* 
       <div className="left-side">
         <LeftCollection />
-      </div>
+      </div> */}
 
 
       {/* right side =========== */}
 
       <div className="right-side">
-        <h1>All Collections</h1>
+        <h1 className='primaryText'>All Collections</h1>
+        <br />
         <div className="card">
           {
             DataCollection.map((data, i) => {
