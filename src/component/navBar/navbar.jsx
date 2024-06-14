@@ -11,13 +11,14 @@ import { auth } from '../../pages/firebase';
 import { toast } from 'react-toastify';
 
 
-function navbar() {
+function navbar({size}) {
     const [active, setActive] = useState('Home');
 
 
     // searching feature   ============
     const navigate = useNavigate()
     const [SearchItem, setSearchItem] = useState("")
+    
 
     const searchingHendling = (e) => {
         e.preventDefault()
@@ -72,7 +73,7 @@ function navbar() {
 
             <div className="cart">
                 <Link to='/cart'><ShoppingCartOutlinedIcon /></Link>
-                <span className="cart-logo">0</span>
+                <span className="cart-logo">{size}</span>
             </div>
 
 

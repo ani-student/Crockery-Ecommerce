@@ -4,7 +4,9 @@ import DataCollection from '../../util/collection'
 import { colors } from '@mui/material'
 // import LeftCollection from '../Hero-left-collection/Left-collection'
 
-function collection() {
+function collection({cart, setCart,id}) {
+
+
   return (
     <section className='container collection'>
 
@@ -24,7 +26,7 @@ function collection() {
           {
             DataCollection.map((data, i) => {
               return <div key={i}>
-                <RCollection name={data.name} image={data.image} sales_price={data.sales_price} old_price={data.old_prices} />
+                <RCollection id={data.id} name={data.name} image={data.image} sales_price={data.sales_price} old_price={data.old_prices} cart={cart} setCart={setCart} />
               </div>
             })
           }

@@ -4,7 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import ShopContextProvider from "./context/contexts.jsx"
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render( 
+root.render(
 
   <ShopContextProvider>
     <React.StrictMode>

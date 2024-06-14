@@ -1,6 +1,7 @@
 import Navbar from './component/navBar/navbar'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { React, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid';
 
 import Home from './pages/Home'
 import Cart from './pages/Cart'
@@ -21,16 +22,18 @@ import { ToastContainer } from "react-toastify"
 
 function App() {
 
+  const [cart, setCart] = useState([{cart:[0] , id:uuidv4()}])
+
 
   return (
     <>
       <BrowserRouter>
-        <Navbar  />
+        <Navbar size={cart.length} />
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/Decor' element={<ShopCategory banner={Decor} Category="decor" />} />
-          <Route path='/DiningKitchen' element={<ShopCategory banner={kitchen} Category="dinning and kitchen" />} />
-          <Route path='/Living' element={<ShopCategory banner={Living} Category="Living" />} />
+          <Route path='/' element={<Home cart={cart} setCart={setCart} id={cart.id} />} />
+          <Route path='/Decor' element={<ShopCategory banner={Decor} Category="decor" cart={cart} setCart={setCart} id={cart.id}  />} />
+          <Route path='/DiningKitchen' element={<ShopCategory banner={kitchen} Category="dinning and kitchen" cart={cart} setCart={setCart} id={cart.id} />} />
+          <Route path='/Living' element={<ShopCategory banner={Living} Category="Living" cart={cart} setCart={setCart} id={cart.id} />} />
 
           {/* <Route path='/product' element={<Product />}>
             <Route path=':ProductID' element={<Product />} />
@@ -47,7 +50,7 @@ function App() {
           <Route path='/register' element={<SignUp />} />
 
 
-          <Route path='/cart' element={<Cart />} />
+          <Route path='/cart' element={<Cart  cart={cart} setCart={setCart}/>} />
 
         </Routes>
         <ToastContainer />

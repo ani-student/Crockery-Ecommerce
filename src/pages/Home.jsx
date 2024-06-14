@@ -3,12 +3,13 @@ import Hero from '../component/Hero/Hero'
 import Slider from '../component/slider/Slider'
 import Collection from '../component/Hero-Collection/collection'
 
-function Home() {
+function Home({cart, setCart}) {
+
   return (
     <div>
       <Hero/>
       <Slider/>
-      <Collection/>
+      <Collection cart={cart} setCart={setCart}/>
     </div>
   )
 }
